@@ -1,13 +1,16 @@
 FROM node:14-alpine AS build
 ARG VERSION=v0.12.0
 
-RUN apk add git
+# hadolint ignore=DL3018
+RUN : \
+	&& apk add --no-cache git \
+	&& rm -rf /var/cache/apk/*
 
 WORKDIR /opt/node_app
 
-RUN git clone --depth 1 --branch $VERSION https://github.com/excalidraw/excalidraw.git .
-
-RUN yarn --ignore-optional
+RUN : \
+	&& git clone --depth 1 --branch $VERSION https://github.com/excalidraw/excalidraw.git . \
+	&& yarn --ignore-optional
 
 ARG NODE_ENV=production
 

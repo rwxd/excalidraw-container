@@ -1,14 +1,9 @@
 ---
-name: Docker build
+name: Docker build tag
 
 on:
   workflow_dispatch:
-  schedule:
-    # Every day at 0UTC
-    - cron: "0 0 * * *"
   push:
-    branches:
-      - "main"
     tags:
       - "v*"
 jobs:
@@ -51,16 +46,14 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
             type=sha
-
-      - name: Set env
-        run: echo "VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
-
       - name: Build and push master Docker image
         uses: docker/build-push-action@v3.0.0
         with:
           context: .
           build-args:
-            - "VERSION=${{ env.RELEASE_VERSION }}"
+            - "VERSION=$VERSION"
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+        env:
+          VERSION: master
