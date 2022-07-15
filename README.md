@@ -4,7 +4,7 @@ Nightly Docker Build for [Excalidraw](https://github.com/excalidraw/excalidraw).
 
 Tags are also available.
 
-[DockerHub](https://hub.docker.com/repository/docker/rwxd/excalidraw)
+[DockerHub](https://hub.docker.com/r/rwxd/excalidraw)
 
 [GitHub Packages](https://github.com/rwxd/excalidraw-container/pkgs/container/excalidraw)
 
