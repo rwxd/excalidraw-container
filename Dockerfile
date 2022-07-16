@@ -1,4 +1,4 @@
-FROM node:18-alpine AS build
+FROM node:14-alpine AS build
 ARG VERSION=v0.12.0
 
 # hadolint ignore=DL3018
