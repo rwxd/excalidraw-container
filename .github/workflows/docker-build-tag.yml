@@ -31,7 +31,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@v4.0.1
+        uses: docker/metadata-action@v4.6.0
         with:
           # list of Docker images to use as base name for tags
           images: |
@@ -47,7 +47,7 @@ jobs:
             type=semver,pattern={{major}}
             type=sha
       - name: Build and push master Docker image
-        uses: docker/build-push-action@v3.0.0
+        uses: docker/build-push-action@v3.3.1
         with:
           context: .
           build-args: "--VERSION=$VERSION"
