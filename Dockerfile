@@ -16,7 +16,7 @@ ARG NODE_ENV=production
 
 RUN yarn build:app:docker
 
-FROM nginx:1.23-alpine
+FROM nginx:1.27-alpine
 
 COPY --from=build /opt/node_app/build /usr/share/nginx/html
 
